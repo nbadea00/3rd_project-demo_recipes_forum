@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
-import { CardComponent } from './components/card/card.component';
-import { ListaPostComponent } from './listaPost/lista-post/lista-post.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListaPostComponent,
+    component: NzDemoTableRowSelectionAndOperationComponent,
   },
   {
     path: 'details/:id',
     component: DettagliCardComponent,
+  },{
+    path: 'nuovo-post',
+    component: CreatePostComponent
   }
 ];
 

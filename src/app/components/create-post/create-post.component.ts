@@ -2,7 +2,6 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NzButtonSize } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-create-post',

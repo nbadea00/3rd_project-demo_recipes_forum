@@ -10,18 +10,29 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListaPostComponent } from './listaPost/lista-post/lista-post.component';
+
+//Zorro
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { CardModule } from './components/card/card.module';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+
+//Module
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
+import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaPostComponent
+    CreatePostComponent,
+    NzDemoTableRowSelectionAndOperationComponent,
+    DettagliCardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +43,11 @@ registerLocaleData(en);
     NzTableModule,
     NzDividerModule,
     NzButtonModule,
-    CardModule,
-    NzGridModule
+    NzGridModule,
+    NzMenuModule,
+    NzCardModule,
+    NzIconModule,
+    NzNotificationModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
