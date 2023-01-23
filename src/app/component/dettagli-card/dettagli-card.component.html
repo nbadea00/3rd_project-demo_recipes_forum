@@ -1,0 +1,10 @@
+<div *ngIf="post$ | async" style="background: #ECECEC;padding:30px;">
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="8">
+      <nz-card [nzTitle]="'Title: '+post[0].title">
+        <p>Id: {{post[0].id}}</p>
+        <p>Body: {{post[0].body}}</p>
+      </nz-card>
+    </div>
+  </div>
+</div>

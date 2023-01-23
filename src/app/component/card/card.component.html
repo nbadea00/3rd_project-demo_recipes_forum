@@ -1,0 +1,16 @@
+<nz-collapse>
+  <nz-collapse-panel
+    *ngFor="let post of posts"
+    [nzHeader]="post.title"
+    [nzExtra]="action"
+  >
+    <p style="margin:0;">
+      {{post.body}}
+    </p>
+    <ng-template #action>
+      <button nz-button nzType="primary" nzShape="round" (click)="(a == 'Delete')? createNotification('warning'): null" (click)="buttonClick(a, post.id)" (click)="$event.stopPropagation()" *ngFor="let a of ['View','Edit','Delete']">{{a}}</button>
+    </ng-template>
+  </nz-collapse-panel>
+</nz-collapse>
+
+

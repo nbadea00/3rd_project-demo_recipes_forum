@@ -1,0 +1,13 @@
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+
+  &:nth-child(2){
+    background-color: #178857;
+    border: #178857;
+  }
+  &:nth-child(3){
+    background-color: red;
+    border: red;
+  }
+}
