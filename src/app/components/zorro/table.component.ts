@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-export interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post } from 'src/app/interface/post.interface';
 
 @Component({
   selector: 'nz-demo-table-row-selection-and-operation',
@@ -27,8 +21,8 @@ export interface Post {
           <tr>
             <th>Id</th>
             <th [nzWidth]="'20%'">Title</th>
-            <th [nzWidth]="'62%'">Body</th>
-            <th [nzWidth]="'13%'">Acction</th>
+            <th [nzWidth]="'55%'">Body</th>
+            <th [nzWidth]="'20%'">Acction</th>
           </tr>
         </thead>
         <tbody>
@@ -41,12 +35,12 @@ export interface Post {
                 nz-button
                 nzType="primary"
                 nzShape="round"
-                (click)="a == 'Delete' ? createNotification('warning') : null"
+                (click)="a == 'delete' ? createNotification('warning') : null"
                 (click)="buttonClick(a, data.id)"
                 (click)="$event.stopPropagation()"
-                *ngFor="let a of ['View', 'Edit', 'Delete']"
+                *ngFor="let a of ['eye', 'edit', 'delete']"
               >
-                {{ a }}
+              <span nz-icon [nzType]="a" nzTheme="outline"></span>
               </button>
             </td>
           </tr>
@@ -131,13 +125,13 @@ export class NzDemoTableRowSelectionAndOperationComponent implements OnInit {
 
   buttonClick(s: string, id: number) {
     switch (s) {
-      case 'View':
+      case 'eye':
         this.router.navigate([`/details`, id]);
         break;
-      case 'Edit':
+      case 'edit':
         console.log(s);
         break;
-      case 'Delete':
+      case 'delete':
         console.log(s);
         break;
     }

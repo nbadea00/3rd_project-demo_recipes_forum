@@ -25,6 +25,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
 import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -32,7 +33,8 @@ registerLocaleData(en);
     AppComponent,
     CreatePostComponent,
     NzDemoTableRowSelectionAndOperationComponent,
-    DettagliCardComponent
+    DettagliCardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
