@@ -1,7 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PostsService } from 'src/app/service/posts.service';
 
 @Component({
   selector: 'app-create-post',
@@ -32,7 +33,7 @@ export class CreatePostComponent implements OnInit {
     post: "",
 }
 
-  constructor() { }
+  constructor(private ps: PostsService,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -43,5 +44,8 @@ export class CreatePostComponent implements OnInit {
     console.log(this.form.value.formPost.title)
     this.userPost.title = this.form.value.formPost.title;
     this.userPost.post = this.form.value.formPost.post;
+
+    this.ps.postPost({'userId': 1, 'title': this.userPost.title, 'body': this.userPost.post}).subscribe(data => console.log(data));
+    this.router.navigate(['/']);
   }
 }

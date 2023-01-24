@@ -23,10 +23,10 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 //Module
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
 import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { EditPostComponent } from './components/edit-post/edit-post.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -51,11 +51,9 @@ registerLocaleData(en);
     NzMenuModule,
     NzCardModule,
     NzIconModule,
-    NzNotificationModule
+    NzNotificationModule,
   ],
-  providers: [
-    { provide: NZ_I18N, useValue: en_US }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,7 +1,10 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Post } from 'src/app/interface/post.interface';
+import { PostsService } from 'src/app/service/posts.service';
 
 @Component({
   selector: 'app-create-post',
@@ -11,9 +14,7 @@ import { NgForm } from '@angular/forms';
 
 export class EditPostComponent implements OnInit {
 
-
-
-  print:boolean = false
+  @ViewChild('form',{static: true}) form!: NgForm;
 
   postInterface = {
     title: "",
@@ -21,27 +22,26 @@ export class EditPostComponent implements OnInit {
     image: "",
   }
 
-  @ViewChild('form',{static: true}) form!: NgForm;
+  constructor(private ps: PostsService, private route: ActivatedRoute, private router: Router) { }
 
-  posts:any = []
+  post!:Post;
+  sub: Subscription = new Subscription();
 
-
-  userPost:any = {
-    name: "",
-    title: "",
-    post: "",
-}
-
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void{
+    this.sub = this.ps.getPosts().subscribe((data)=> {
+      this.route.params.subscribe((params) => {
+        this.post = data.find((post:Post) => post.id == params['id'])
+        this.postInterface.title = this.post.title;
+        this.postInterface.post = this.post.body;
+      })
+    })
   }
 
-  submit(){
-
-    this.print = true;
+  submit():void{
     console.log(this.form.value.formPost.title)
-    this.userPost.title = this.form.value.formPost.title;
-    this.userPost.post = this.form.value.formPost.post;
+
+    this.route.params.subscribe((params) =>  this.ps.putPost(params['id'],{'userId': 1, 'title': this.form.value.formPost.title, 'body': this.form.value.formPost.post}).subscribe(data => console.log(data)));
+
+    this.router.navigate(['/']);
   }
 }

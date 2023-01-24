@@ -14,12 +14,11 @@ const routes: Routes = [
     path: 'details/:id',
     component: DettagliCardComponent,
   },{
+    path: 'edit/:id',
+    component: EditPostComponent,
+  },{
     path: 'nuovo-post',
     component: CreatePostComponent
-  },
-  {
-    path:'edit-post',
-    component: EditPostComponent
   }
 ];
 

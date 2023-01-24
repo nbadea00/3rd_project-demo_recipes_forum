@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/interface/post.interface';
+import { PostsService } from 'src/app/service/posts.service';
 
 @Component({
   selector: 'nz-demo-table-row-selection-and-operation',
@@ -63,7 +65,7 @@ import { Post } from 'src/app/interface/post.interface';
         justify-content: center;
       }
       nz-table{
-        max-width: 1200px;
+        width: 1200px;
       }
 
       [nz-button] {
@@ -92,7 +94,8 @@ export class NzDemoTableRowSelectionAndOperationComponent implements OnInit {
 
   constructor(
     private notification: NzNotificationService,
-    private router: Router
+    private router: Router,
+    private ps: PostsService
   ) {}
 
   updateCheckedSet(id: number, checked: boolean): void {
@@ -129,10 +132,10 @@ export class NzDemoTableRowSelectionAndOperationComponent implements OnInit {
         this.router.navigate([`/details`, id]);
         break;
       case 'edit':
-        console.log(s);
+        this.router.navigate([`/edit`, id]);
         break;
       case 'delete':
-        console.log(s);
+        this.ps.deletePost(id).subscribe(data => console.log(data));
         break;
     }
   }
@@ -152,39 +155,8 @@ export class NzDemoTableRowSelectionAndOperationComponent implements OnInit {
     );
   }
 
+  sub: Subscription = new Subscription();
   ngOnInit(): void {
-    this.listOfData = [
-      {
-        userId: 1,
-        id: 1,
-        title:
-          'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-        body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-      },
-      {
-        userId: 1,
-        id: 2,
-        title: 'qui est esse',
-        body: 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla',
-      },
-      {
-        userId: 1,
-        id: 3,
-        title: 'ea molestias quasi exercitationem repellat qui ipsa sit aut',
-        body: 'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut',
-      },
-      {
-        userId: 1,
-        id: 4,
-        title: 'eum et est occaecati',
-        body: 'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit',
-      },
-      {
-        userId: 1,
-        id: 5,
-        title: 'nesciunt quas odio',
-        body: 'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque',
-      }
-    ];
+   setInterval(()=> this.ps.getPosts().subscribe((data) => this.listOfData = data), 2000);
   }
 }
