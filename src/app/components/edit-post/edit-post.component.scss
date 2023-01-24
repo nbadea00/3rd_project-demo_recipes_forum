@@ -16,7 +16,7 @@
       font-size: 1.7em;
       font-weight: 500;
       color: white;
-      background-image:url('../../../assets/bglegno3.webp');
+      background-image: url('../../../assets/legnoBG.jpg');
       padding-left: 10px;
     }
     #buttons{
@@ -24,9 +24,9 @@
       flex-direction: row-reverse;
       margin-top: 5px;
       button{
-       margin-right: 9px;
        font-size: 1.5em;
        font-weight: 700;
+       margin-right: 10px;
 
       }
     }
@@ -41,7 +41,10 @@
 
 
 #addImage{
-  width: 35px;
+  padding: 0 4px;
+  border-radius: 10px;
+  background-color: #1890ff;
+  color: white;
   &:hover{
     transform: scale(1.1);
     font-weight: 500;
@@ -60,7 +63,18 @@
     transform: scale(1.1);
   }
 }
-
+#back{
+  padding: 0 4px;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  border: none;
+  &:hover{
+    background-color:rgb(231, 22, 22);
+    transform: scale(1.1);
+    color: white;
+  }
+}
 #postInput{
   height: 300px;
   border-radius: 5px;

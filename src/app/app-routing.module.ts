@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   },{
     path: 'nuovo-post',
     component: CreatePostComponent
+  },
+  {
+    path:'edit-post',
+    component: EditPostComponent
   }
 ];
 

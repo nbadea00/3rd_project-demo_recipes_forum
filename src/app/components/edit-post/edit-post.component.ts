@@ -5,11 +5,11 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-post',
-  templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.scss']
+  templateUrl: './edit-post.component.html',
+  styleUrls: ['./edit-post.component.scss']
 })
 
-export class CreatePostComponent implements OnInit {
+export class EditPostComponent implements OnInit {
 
 
 

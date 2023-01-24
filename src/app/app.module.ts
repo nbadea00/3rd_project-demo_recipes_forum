@@ -26,6 +26,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
 import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -34,7 +35,8 @@ registerLocaleData(en);
     CreatePostComponent,
     NzDemoTableRowSelectionAndOperationComponent,
     DettagliCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
