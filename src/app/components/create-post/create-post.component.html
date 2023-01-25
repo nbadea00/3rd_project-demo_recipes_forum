@@ -6,7 +6,7 @@
         <input
           nz-input
           type="text"
-          id="titleInput"
+          id="title"
           name="title"
           #title="ngModel"
           [ngModel]="postInterface.title"
@@ -14,39 +14,70 @@
         />
       </div>
 
+      <div *ngIf="img" class="form-group bb">
+        <label id="cTitle" for="imgUrl">Url img</label>
+        <input
+          nz-input
+          id="imgUrl"
+          type="text"
+          name="imgUrl"
+          #ingredients="ngModel"
+          [(ngModel)]="postInterface.imgUrl"
+        />
+      </div>
+
       <div class="form-group bb">
-        <label id="cPost" for="post">Create a Post</label>
+        <label id="cTitle" for="ingredients">Ingredients</label>
+        <input
+          nz-input
+          id="ingredients"
+          type="text"
+          name="ingredients"
+          #ingredients="ngModel"
+          [(ngModel)]="postInterface.ingredients"
+          required
+        />
+      </div>
+
+      <div class="form-group bb">
+        <label id="cPost" for="method">Method</label>
         <textarea
-          id="postInput"
-          rows="4"
+        id="method"
+          rows="2"
           nz-input
           type="text"
-          name="post"
-          #post="ngModel"
-          [ngModel]="postInterface.post"
+          name="method"
+          #method="ngModel"
+          [(ngModel)]="postInterface.method"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group bb">
+        <label id="cPost" for="description">Description</label>
+        <textarea
+          id="description"
+          rows="2"
+          nz-input
+          type="text"
+          name="description"
+          #description="ngModel"
+          [(ngModel)]="postInterface.description"
           required
         ></textarea>
       </div>
 
       <div id="buttons">
-        <button nz-button id="sendPost" nzType="primary" nzShape="round">
+        <button  [disabled]="!form.valid" nz-button id="sendPost" nzType="primary" nzShape="round">
           Post<span nz-icon nzType="send" nzTheme="outline"></span>
         </button>
-        <button nz-button id="addImage" nzType="primary" nzShape="circle">
+
+        <button type="button"  (click)="imgToggle()" nz-button id="addImage" nzType="primary" nzShape="circle">
           <span nz-icon nzType="file-add" nzTheme="outline"></span>
         </button>
-        <button nz-button id="back"><span nz-icon nzType="rollback" nzTheme="outline"></span></button>
+
+        <button type="button" nz-button id="back" [routerLink]="['/posts']"><span nz-icon nzType="rollback" nzTheme="outline"></span></button>
       </div>
     </div>
   </form>
 </div>
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col" *ngIf="print">
-      <h3>{{userPost.name}}</h3>
-      <h3>{{userPost.title}}</h3>
-      <h3>{{userPost.post}}</h3>
-    </div>
-  </div>
-</div> -->

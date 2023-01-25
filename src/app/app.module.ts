@@ -20,23 +20,41 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+
 
 //Module
+import { AuthModule } from './components/auth/auth/auth.module';
+
+//Component
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { NzDemoTableRowSelectionAndOperationComponent } from './components/zorro/table.component';
 import { DettagliCardComponent } from './components/dettagli-card/dettagli-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NzDemoRateBasicComponent } from './components/zorro/rate.component';
+import { NzDemoButtonSizeComponent } from './components/zorro/button.component';
+import { TopMembersComponent } from './components/top-members/top-members.component';
+import {NzDemoLayoutTopComponent } from './components/zorro/layout.component';
+import { NzDemoCarouselBasicComponent } from './components/zorro/carousel';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
     CreatePostComponent,
+    NzDemoLayoutTopComponent,
     NzDemoTableRowSelectionAndOperationComponent,
     DettagliCardComponent,
     NavbarComponent,
-    EditPostComponent
+    EditPostComponent,
+    NzDemoRateBasicComponent,
+    NzDemoButtonSizeComponent,
+    TopMembersComponent,
+    NzDemoCarouselBasicComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +70,11 @@ registerLocaleData(en);
     NzCardModule,
     NzIconModule,
     NzNotificationModule,
+    NzRateModule,
+    AuthModule,
+    NzLayoutModule,
+    NzBreadCrumbModule,
+    NzCarouselModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

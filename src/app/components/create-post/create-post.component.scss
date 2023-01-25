@@ -1,6 +1,6 @@
 .container{
   background-image: url('../../../assets/img/bgCucina.jpg');
-  height: 100vh;
+  height: 100%;
 }
 
 
@@ -39,7 +39,18 @@
   margin-bottom: 10px;
 }
 
-
+#back{
+  padding: 0 4px;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  border: none;
+  &:hover{
+    background-color:rgb(231, 22, 22);
+    transform: scale(1.1);
+    color: white;
+  }
+}
 #addImage{
   width: 35px;
   &:hover{

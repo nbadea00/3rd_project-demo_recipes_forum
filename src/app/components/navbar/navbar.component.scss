@@ -1,0 +1,48 @@
+#navbar{
+display: flex;
+justify-content: space-between;
+
+background-color: rgb(24, 24, 24);
+
+div{
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  ul{
+    list-style: none;
+    display: flex;
+    margin-bottom: 0;
+    li.active {
+      color: rgb(254,201,93);
+    }
+    li{
+      font-size: 1.2em;
+      color: white;
+      background-color: rgb(24, 24, 24);
+      margin-right: 35px;
+      &:hover{
+        color: rgb(254,201,93);
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+
+
+      span{
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+}
+
+#logo-container{
+  position: relative;
+  right: 120px;
+}
+
+#logo{
+  width: 200px;
+}
+
+

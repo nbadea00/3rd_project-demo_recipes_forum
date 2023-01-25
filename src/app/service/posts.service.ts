@@ -6,7 +6,9 @@ import { environment } from 'src/environments/environment';
 export interface Post{
   userId:number,
   title:string,
-  body:string
+  description:string,
+  ingredients:string,
+  method:string,
 }
 
 @Injectable({

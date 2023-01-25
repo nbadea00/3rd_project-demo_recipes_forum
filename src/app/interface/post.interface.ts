@@ -2,11 +2,13 @@ export interface Post {
   userId:number,
   id:number,
   title:string,
-  body:string,
-  imgUrl:string
+  description:string,
+  ingredients:string,
+  method:string,
+  imgUrl:string,
+  vote:number,
+  rate:number
 }
-/*
-  description
-  ingredients
-  method
-*/
+
+
+

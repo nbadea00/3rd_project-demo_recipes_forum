@@ -15,15 +15,55 @@
         </div>
 
         <div class="form-group bb">
-          <label id="cPost" for="post">Edit your Post</label>
+          <label id="cTitle" for="imgUrl">Edit your img</label>
+          <input
+            nz-input
+            id="imgUrl"
+            type="text"
+            name="imgUrl"
+            #ingredients="ngModel"
+            [(ngModel)]="postInterface.imgUrl"
+            required
+          />
+        </div>
+
+        <div class="form-group bb">
+          <label id="cTitle" for="ingredients">Edit your ingredients</label>
+          <input
+            nz-input
+            id="ingredients"
+            type="text"
+            name="ingredients"
+            #ingredients="ngModel"
+            [(ngModel)]="postInterface.ingredients"
+            required
+          />
+        </div>
+
+        <div class="form-group bb">
+          <label id="cPost" for="method">Edit your method</label>
           <textarea
-            id="postInput"
-            rows="4"
+          id="method"
+            rows="2"
             nz-input
             type="text"
-            name="post"
-            #post="ngModel"
-            [(ngModel)]="postInterface.post"
+            name="method"
+            #method="ngModel"
+            [(ngModel)]="postInterface.method"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group bb">
+          <label id="cPost" for="description">Edit your description</label>
+          <textarea
+            id="description"
+            rows="2"
+            nz-input
+            type="text"
+            name="description"
+            #description="ngModel"
+            [(ngModel)]="postInterface.description"
             required
           ></textarea>
         </div>
@@ -32,10 +72,7 @@
           <button nz-button id="sendPost" nzType="primary" nzShape="round">
             Edit<span nz-icon nzType="send" nzTheme="outline"></span>
           </button>
-          <button nz-button id="addImage">
-            <span nz-icon nzType="file-add" nzTheme="outline"></span>
-          </button>
-          <button nz-button id="back"><span nz-icon nzType="rollback" nzTheme="outline"></span></button>
+          <button type="button" nz-button id="back" [routerLink]="['/details', id]"><span nz-icon nzType="rollback" nzTheme="outline"></span></button>
         </div>
       </div>
     </form>

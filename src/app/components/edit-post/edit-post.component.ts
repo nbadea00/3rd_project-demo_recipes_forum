@@ -17,22 +17,30 @@ export class EditPostComponent implements OnInit {
   @ViewChild('form',{static: true}) form!: NgForm;
 
   postInterface = {
-    title: "",
-    post: "",
-    image: "",
+    userId:'',
+    title:'',
+    description:'',
+    ingredients:'',
+    method:'',
+    imgUrl:'',
   }
 
   constructor(private ps: PostsService, private route: ActivatedRoute, private router: Router) { }
 
   post!:Post;
   sub: Subscription = new Subscription();
+  id:any = 0;
 
   ngOnInit(): void{
     this.sub = this.ps.getPosts().subscribe((data)=> {
       this.route.params.subscribe((params) => {
         this.post = data.find((post:Post) => post.id == params['id'])
+        this.id = params['id'];
         this.postInterface.title = this.post.title;
-        this.postInterface.post = this.post.body;
+        this.postInterface.description = this.post.description;
+        this.postInterface.ingredients = this.post.ingredients;
+        this.postInterface.method = this.post.method;
+        this.postInterface.imgUrl = this.post.imgUrl;
       })
     })
   }
@@ -40,8 +48,16 @@ export class EditPostComponent implements OnInit {
   submit():void{
     console.log(this.form.value.formPost.title)
 
-    this.route.params.subscribe((params) =>  this.ps.putPost(params['id'],{'userId': 1, 'title': this.form.value.formPost.title, 'body': this.form.value.formPost.post}).subscribe(data => console.log(data)));
+    let data = {
+      'userId': 1,
+      'title': this.form.value.formPost.title,
+      'ingredients': this.form.value.formPost.ingredients,
+      'method': this.form.value.formPost.method,
+      'description': this.form.value.formPost.description,
+      'imgUrl': this.form.value.formPost.imgUrl,
+    }
+    this.route.params.subscribe((params) =>  this.ps.putPost(params['id'], data).subscribe(data => console.log(data)));
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/posts']);
   }
 }
