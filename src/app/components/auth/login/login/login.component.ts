@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FirebaseAuthService } from '../../firebase-auth.service';
 
 @Component({
   selector: 'nz-demo-form-normal-login',
@@ -8,8 +9,8 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">
-          <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input formControlName="userName" placeholder="Username" />
+          <nz-input-group nzPrefixIcon="mail">
+            <input type="text" nz-input formControlName="email" placeholder="Email" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -32,7 +33,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
       </div>
       <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
       Or
-      <a>register now!</a>
+      <a [routerLink]="['/routePath']" routerLinkActive="router-link-active" >register now!</a>
     </form>
   </div>
   `,
@@ -68,6 +69,7 @@ export class NzDemoFormNormalLoginComponent implements OnInit {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
+      this.fbA.logIn(this.validateForm.value);
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -78,11 +80,11 @@ export class NzDemoFormNormalLoginComponent implements OnInit {
     }
   }
 
-  constructor(private fb: UntypedFormBuilder) {}
+  constructor(private fb: UntypedFormBuilder, private fbA: FirebaseAuthService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
       remember: [true]
     });

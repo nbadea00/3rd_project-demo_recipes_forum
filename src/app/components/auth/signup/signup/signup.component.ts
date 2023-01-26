@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
+import { FirebaseAuthService } from '../../firebase-auth.service';
+import { FirebaseDbService } from 'src/app/service/firebase-db.service';
 
 @Component({
   selector: 'nz-demo-form-validate-reactive',
@@ -44,15 +46,15 @@ import { Observable, Observer } from 'rxjs';
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>imgUrl</nz-form-label>
+        <nz-form-label [nzSpan]="7">imgUrl</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please write something here!">
             <input nz-input formControlName="imgUrl" placeholder="Url"/>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control [nzOffset]="7" [nzSpan]="12">
-          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
-          <button nz-button (click)="resetForm($event)">Reset</button>
+          <button nz-button  nzType="primary" [disabled]="!validateForm.valid || a">Submit</button>
+          <button nz-button  (click)="resetForm($event)">Reset</button>
         </nz-form-control>
       </nz-form-item>
     </form>
@@ -80,8 +82,18 @@ styles: [
 export class NzDemoFormValidateReactiveComponent {
   validateForm: UntypedFormGroup;
 
+  a = false;
+
   submitForm(): void {
+    this.a = true;
     console.log('submit', this.validateForm.value);
+    let data = {
+      'email': this.validateForm.value.email,
+      'password': this.validateForm.value.password,
+      'name': this.validateForm.value.userName,
+      'imgUrl': this.validateForm.value.imgUrl
+    }
+    this.fbA.signUp(data.email, data.password).then((user:any) => this.fbDb.post(user.uid, data.name, data.email, data.imgUrl)).then(()=> this.fbA.logIn({'email': data.email,'password': data.password}));
   }
 
   resetForm(e: MouseEvent): void {
@@ -122,11 +134,11 @@ export class NzDemoFormValidateReactiveComponent {
     return {};
   };
 
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(private fb: UntypedFormBuilder, private fbA: FirebaseAuthService, private fbDb: FirebaseDbService) {
     this.validateForm = this.fb.group({
       userName: ['', [Validators.required], [this.userNameAsyncValidator]],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirm: ['', [this.confirmValidator]],
       imgUrl: ['']
     });

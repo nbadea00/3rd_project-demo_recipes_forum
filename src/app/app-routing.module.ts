@@ -8,6 +8,7 @@ import { TopMembersComponent } from './components/top-members/top-members.compon
 import { NzDemoFormNormalLoginComponent } from './components/auth/login/login/login.component';
 import { NzDemoFormValidateReactiveComponent } from './components/auth/signup/signup/signup.component';
 import { NzDemoCarouselBasicComponent } from './components/zorro/carousel';
+import { AuthGuard } from './components/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,9 +25,11 @@ const routes: Routes = [
   },{
     path: 'edit/:id',
     component: EditPostComponent,
+    canActivate:[AuthGuard]
   },{
     path: 'nuovo-post',
-    component: CreatePostComponent
+    component: CreatePostComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'top-members',

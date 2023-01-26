@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
       <nz-header nz-col nzXs="24" [nzMd]="{ order: 1}" [nzOrder]="3" [ngStyle]="{'height': 'auto', 'padding': '0px'}">
         <app-navbar></app-navbar>
       </nz-header>
-      <nz-content nz-col nzXs="24" [nzMd]="{ order: 2}" [nzOrder]="2">
+      <nz-content nz-col nzXs="24" [nzMd]="{ order: 2}" [nzOrder]="1">
         <div class="inner-content">
           <ng-content></ng-content>
         </div>
       </nz-content>
-      <nz-footer nz-col nzXs="24" [nzMd]="{ order: 3}" [nzOrder]="1">Ant Design ©2020 Implement By Angular</nz-footer>
+      <nz-footer nz-col nzXs="24" [nzMd]="{ order: 3}" [nzOrder]="2">Ant Design ©2020 Implement By Angular</nz-footer>
     </nz-layout>
   `,
   styles: [
@@ -22,7 +22,6 @@ import { Component } from '@angular/core';
       }
       div{
         height: 100%;
-
       }
 
       nz-breadcrumb {
@@ -31,6 +30,9 @@ import { Component } from '@angular/core';
 
       nz-content {
         padding: 0 50px;
+        @media only screen and (max-width:767px) {
+          padding: 0 0px;
+        }
       }
 
       nz-footer {

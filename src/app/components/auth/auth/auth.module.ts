@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzDemoFormNormalLoginComponent } from '../login/login/login.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -21,7 +22,8 @@ import { NzDemoFormValidateReactiveComponent } from '../signup/signup/signup.com
     NzFormModule,
     NzInputModule,
     NzCheckboxModule,
-    NzButtonModule
+    NzButtonModule,
+    RouterModule
   ]
 })
 export class AuthModule { }

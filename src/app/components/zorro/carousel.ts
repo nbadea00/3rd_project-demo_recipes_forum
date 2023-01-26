@@ -29,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
         text-align: center;
       }
       nz-carousel {
-        height: 700px;
+        height: 100%;
         border-radius: 15px;
         box-shadow: 3px 3px 15px black;
       }

@@ -1,6 +1,4 @@
 #navbar{
-display: flex;
-justify-content: space-between;
 
 background-color: rgb(24, 24, 24);
 
@@ -9,6 +7,7 @@ div{
   display: flex;
   align-items: center;
   ul{
+    padding: 0;
     list-style: none;
     display: flex;
     margin-bottom: 0;
@@ -35,14 +34,59 @@ div{
 }
 
 }
-
-#logo-container{
-  position: relative;
-  right: 120px;
+.scritta{
+  margin-left: 5px;
 }
 
 #logo{
-  width: 200px;
+  width: 100px;
+  margin-left: 20px;
+}
+#utente{
+  display: none;
+}
+@media only screen and (max-width:992px){
+  #logo{
+    display: none;
+  }
+  #contLogo{
+    display: none;
+  }
+  #home{
+    margin-left: 25px;
+  }
+}
+@media only screen and (max-width:767px){
+  #navbar{
+    div{
+      ul{
+        justify-content: space-evenly;
+        li{
+          margin: 0;
+          span{
+            font-size: 2em;
+          }
+          .scritta{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .login{
+    display: none;
+  }
+  #utente{
+    display: unset;
+  }
+  #home{
+    margin-left: 0;
+  }
+}
+
+#login{
+  display: flex;
+flex-direction: row-reverse;
 }
 
 

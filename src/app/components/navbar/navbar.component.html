@@ -1,36 +1,41 @@
 <div id="container">
-  <div id="navbar">
-    <div>
-      <ul id="nav-ul">
+  <div id="navbar" nz-row>
+    <div nz-col nz-col nz-row [nzLg]="{span:19}" [nzMd]="{span:18}" [nzXs]="{span:24}"  >
+      <ul id="nav-ul" nz-col nzSpan="24">
+        <li id="contLogo">
+          <img id="logo" src="../../../assets/img/logo-no-background.png" alt="" />
+        </li>
         <li
           [routerLink]="['/']"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <span nz-icon nzType="home" nzTheme="outline"></span>
-          Home
+          <span id="home" nz-icon nzType="home" nzTheme="outline"></span>
+          <span class="scritta">Home</span>
         </li>
         <li [routerLink]="['/posts']" routerLinkActive="active">
           <span nz-icon nzType="container" nzTheme="outline"></span>
-          Ricette
+         <span class="scritta">Ricette</span>
         </li>
         <li [routerLink]="['/prova1']" routerLinkActive="active">
           <span nz-icon nzType="picture" nzTheme="outline"></span>
-          Gallery
+         <span class="scritta">Gallery</span>
         </li>
         <li [routerLink]="['/top-members']" routerLinkActive="active">
           <span nz-icon nzType="crown" nzTheme="outline"></span>
-          Top Members
+         <span class="scritta">Top Members</span>
         </li>
+        <li id="utente"><span nz-icon nzType="user" nzTheme="outline"></span></li>
       </ul>
     </div>
-    <div id="logo-container">
-      <img id="logo" src="../../../assets/img/logo-no-background.png" alt="" />
-    </div>
-    <div>
-      <ul>
-        <li [routerLink]="['/login']" routerLinkActive="active">Log in</li>
-        <li [routerLink]="['/signup']" routerLinkActive="active">Sign up</li>
+    <div nz-col [nzLg]="{span:5}" [nzMd]="{span:6}" [nzSm]="{span:0}"  id="login">
+      <ul *ngIf="!isLoggedIn">
+        <li class="login" [routerLink]="['/login']" routerLinkActive="active">Log in</li>
+        <li class="login" [routerLink]="['/signup']" routerLinkActive="active">Sign up</li>
+      </ul>
+      <ul *ngIf="isLoggedIn">
+        <li class="login" [routerLink]="['/profile']" routerLinkActive="Profile">Profile</li>
+        <li class="login" [routerLink]="['/']" (click)="signOut()">Logout</li>
       </ul>
     </div>
   </div>
