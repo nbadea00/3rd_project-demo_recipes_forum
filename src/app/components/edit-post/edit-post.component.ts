@@ -49,18 +49,31 @@ export class EditPostComponent implements OnInit, OnDestroy {
     });
   }
 
+  userId: string = '';
+  userName:string = '';
+
   submit(): void {
     console.log(this.form.value.formPost.title);
 
+    const userJson = localStorage.getItem('user');
+    if(!userJson) return;
+    const user = JSON.parse(userJson);
+    this.userId = user.uid;
+    this.userName = user.displayName;
+
     let data = {
-      userId: '',
+      userId: this.userId,
       title: this.form.value.formPost.title,
       ingredients: this.form.value.formPost.ingredients,
       method: this.form.value.formPost.method,
       description: this.form.value.formPost.description,
       imgUrl: this.form.value.formPost.imgUrl,
+      userName: this.userName,
     };
-    this.subPut = this.ps
+
+    console.log(data)
+
+    this.ps
       .putPost(this.id, data)
       .subscribe((data) => console.log(data));
 
@@ -69,6 +82,5 @@ export class EditPostComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subGet.unsubscribe();
-    this.subPut.unsubscribe();
   }
 }

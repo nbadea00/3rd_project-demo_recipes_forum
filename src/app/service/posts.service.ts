@@ -28,6 +28,7 @@ export class PostsService {
   }
 
   postPost(data:Post){
+    console.log(data)
     return this.http.post(`${environment.URL}/posts`, data).pipe(catchError(this.errors))
   }
 
@@ -38,6 +39,8 @@ export class PostsService {
 
   putPost(id:number, data:Post){
     let idString = id.toString()
+    console.log(data)
+    console.log(idString)
     return this.http.put(`${environment.URL}/posts/${idString}`,data).pipe(catchError(this.errors))
   }
 

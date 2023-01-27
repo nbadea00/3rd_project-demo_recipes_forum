@@ -1,4 +1,5 @@
 <div class="container">
+  <div id="form-container">
   <form #form="ngForm" (ngSubmit)="submit()" id="form">
       <div ngModelGroup="formPost" class="form-group">
         <div class="form-group bb">
@@ -69,11 +70,12 @@
         </div>
 
         <div id="buttons">
-          <button nz-button id="sendPost" nzType="primary" nzShape="round">
-            Edit<span nz-icon nzType="send" nzTheme="outline"></span>
+          <button [disabled]="!form.valid">
+            Edit
           </button>
-          <button type="button" nz-button id="back" [routerLink]="['/details', id]"><span nz-icon nzType="rollback" nzTheme="outline"></span></button>
+          <p [routerLink]="['/posts']"> Back</p>
         </div>
       </div>
     </form>
+  </div>
   </div>
