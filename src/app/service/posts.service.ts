@@ -47,7 +47,7 @@ export class PostsService {
   }
 
   getAllFav(){
-    return this.http.get<any>(`${environment.URL}/fav`).pipe(catchError(this.errors))
+    return this.http.get<Fav[]>(`${environment.URL}/fav`).pipe(catchError(this.errors))
   }
 
   delFav(id:string){

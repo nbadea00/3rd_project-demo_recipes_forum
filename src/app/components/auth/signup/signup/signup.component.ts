@@ -14,6 +14,7 @@ import { FirebaseDbService } from 'src/app/service/firebase-db.service';
   selector: 'nz-demo-form-validate-reactive',
   template: `
     <div class="cont">
+    <img src="../../../assets/img/logo-no-background.png" alt="">
       <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
@@ -134,9 +135,14 @@ import { FirebaseDbService } from 'src/app/service/firebase-db.service';
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         div{
           justify-content:center;
         }
+        img{
+        width: 250px;
+        margin-bottom: 30px
+      }
       }
       [nz-form] {
         min-width: 500px;
@@ -162,7 +168,7 @@ export class NzDemoFormValidateReactiveComponent {
       email: this.validateForm.value.email,
       password: this.validateForm.value.password,
       name: this.validateForm.value.userName,
-      imgUrl: this.validateForm.value.imgUrl,
+      imgUrl: (this.validateForm.value.imgUrl)? this.validateForm.value.imgUrl: 'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png',
     };
     this.fbA
       .signUp(data.email, data.password, data.name, data.imgUrl)

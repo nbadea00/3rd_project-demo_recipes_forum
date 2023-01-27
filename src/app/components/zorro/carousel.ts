@@ -21,7 +21,13 @@ import { Component, OnInit } from '@angular/core';
           <img [src]="item" />
         </div>
       </nz-carousel>
+      <div id="dsc-container">
+      <p id="main"> <img src="../../../assets/img/logo-no-background.png" alt=""> <br> Benvenuti su Epicooking! Su questo sito potrete condividere ricette culinarie in aggiutna a leggere e votare quelle di altri utenti.<br> Tuffatevi in un'esperienza unica, scoprendo ricette e sapori da tutto il mondo! </p>
+      <p id="sign"> <i>Sito sponsorizzato da Bruno Barbieri <img src="../../../assets/img/barbo.jpg" alt=""></i></p>
+      </div>
     </div>
+
+
   `,
   styles: [
     `
@@ -41,6 +47,37 @@ import { Component, OnInit } from '@angular/core';
       @media screen and (min-width: 425px) {
         img {
           width:100%;
+        }
+      }
+
+      #dsc-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #main{
+        text-align: center;
+        margin-top: 40px;
+        font-size: 1.3em;
+        @media only screen and (max-width:1024px){
+          margin-top:70px;
+        }
+        img{
+          width: 130px;
+          height: 50px;
+        }
+      }
+
+      #sign{
+        margin-top: 50px;
+        img{
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          &:hover{
+            transform: scale(3.0);
+          }
         }
       }
     `,

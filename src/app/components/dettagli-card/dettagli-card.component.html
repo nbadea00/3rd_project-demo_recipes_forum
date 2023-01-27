@@ -1,21 +1,32 @@
-<div *ngIf="post" [ngStyle]="{'background-image': a, 'padding': '30px', 'width':'100%'}">
+<div
+  *ngIf="post"
+  [ngStyle]="{ 'background-image': a, padding: '30px', width: '100%' }"
+>
   <div nz-row nzGutter="8">
     <div nz-col nzSpan="8">
-      <nz-card [nzTitle]="'Title: '+post.title">
-        <p>Ingredienti: {{post.ingredients}}</p>
-        <p>Preparazione: {{post.method}}</p>
-        <p>Descrizione: {{post.description}} </p>
-        <p *ngIf="cont">{{cont}}</p>
+      <nz-card [nzTitle]="'Title: ' + post.title">
+        <p>Ingredienti: {{ post.ingredients }}</p>
+        <p>Preparazione: {{ post.method }}</p>
+        <p>Descrizione: {{ post.description }}</p>
+        <p *ngIf="cont">Like: {{ cont }}</p>
 
-        <p><button
-          nz-button
-          nzType="primary"
-          nzShape="round"
-          (click)="toggle()"
-        >
-        <span nz-icon nzType="like" [nzTheme]="fillOutline"></span>
-        </button>
-          <nz-demo-button-size *ngIf="seiTu" [arr]="['edit', 'delete']" [id]="post.id" (onClick)="buttonClick($event)"></nz-demo-button-size></p>
+        <p>
+          <button
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            [disabled]="!isLoggedIn"
+            (click)="toggle()"
+          >
+            <span nz-icon nzType="like" [nzTheme]="fillOutline"></span>
+          </button>
+          <nz-demo-button-size
+            *ngIf="seiTu"
+            [arr]="['edit', 'delete']"
+            [id]="post.id"
+            (onClick)="buttonClick($event)"
+          ></nz-demo-button-size>
+        </p>
       </nz-card>
     </div>
   </div>

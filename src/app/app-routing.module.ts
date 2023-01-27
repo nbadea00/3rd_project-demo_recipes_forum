@@ -31,8 +31,7 @@ const routes: Routes = [
     path: 'nuovo-post',
     component: CreatePostComponent,
     canActivate:[AuthGuard]
-  },
-  {
+  },{
     path: 'top-members',
     component: TopMembersComponent
   },{

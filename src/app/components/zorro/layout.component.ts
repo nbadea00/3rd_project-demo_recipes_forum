@@ -12,14 +12,14 @@ import { Component } from '@angular/core';
           <ng-content></ng-content>
         </div>
       </nz-content>
-      <nz-footer nz-col nzXs="24" [nzMd]="{ order: 3}" [nzOrder]="2">Ant Design ©2020 Implement By Angular</nz-footer>
+      <nz-footer nz-col nzXs="24" [nzMd]="{ order: 3}" [nzOrder]="2">EPICOOKING ©2020 Implement By Angular</nz-footer>
     </nz-layout>
   `,
   styles: [
     `
     nz-layout{
       flex-wrap: nowrap;
-      min-height:925px;
+      min-height:920px;
     }
       [nz-menu] {
         line-height: auto;

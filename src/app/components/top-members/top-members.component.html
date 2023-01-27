@@ -1,4 +1,4 @@
-<div id="member-container" nz-row>
+<div id="member-container" nz-row >
   <div
     id="top-card"
     nz-col
@@ -7,19 +7,22 @@
     [nzLg]="{ span: 18, offset: 3 }"
     [nzSm]="{ span: 20, offset: 2 }"
     [nzXs]="{ span: 22, offset: 1 }"
+
+    *ngFor="let user of arr; let i = index"
   >
+  <p class="font-size">{{i+1}}</p>
     <div>
       <img
-        src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+        src="{{user.user.profile_picture
+        }}"
       />
     </div>
     <div>
-      <h6>Username</h6>
-      <nz-rate id="stelle-user" [ngModel]="2" nzDisabled></nz-rate>
+      <h6>{{user.user.username}}</h6>
     </div>
-    <div id="stelle">
-      <nz-rate [ngModel]="2" nzDisabled></nz-rate>
-      <p>X SCORE OVER Y REVIEWS</p>
+    <div class="font-size" id="stelle" >
+      <span>{{user.like}} </span>
+      <span [ngStyle]="{'color': 'white'}" nz-icon nzType="like" [nzTheme]="'fill'"></span>
     </div>
   </div>
 </div>

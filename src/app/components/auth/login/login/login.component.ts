@@ -5,7 +5,9 @@ import { FirebaseAuthService } from '../../firebase-auth.service';
 @Component({
   selector: 'nz-demo-form-normal-login',
   template: `
+
   <div class="cont">
+    <img src="../../../assets/img/logo-no-background.png" alt="">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">
@@ -43,7 +45,12 @@ import { FirebaseAuthService } from '../../firebase-auth.service';
       min-height: 78vh;
       display: flex;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
+      img{
+        width: 250px;
+        margin-bottom: 30px
+      }
     }
       .login-form {
         max-width: 400px;

@@ -2,16 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import {
-  BehaviorSubject,
-  Observable,
   Subject,
   Subscription,
   combineLatest,
-  merge,
-  tap,
 } from 'rxjs';
 import { Post } from 'src/app/interface/post.interface';
 import { PostsService } from 'src/app/service/posts.service';
+import { FirebaseAuthService } from '../auth/firebase-auth.service';
 
 @Component({
   selector: 'app-dettagli-card',
@@ -23,13 +20,15 @@ export class DettagliCardComponent implements OnInit {
     private route: ActivatedRoute,
     private ps: PostsService,
     private router: Router,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private fbAuth: FirebaseAuthService,
   ) {}
 
   a = 'url("")';
 
   post!: Post;
   sub: Subscription = new Subscription();
+  subLog: Subscription = new Subscription();
   post$ = new Subject<Post | null>();
 
 
@@ -39,7 +38,10 @@ export class DettagliCardComponent implements OnInit {
   seiTu: boolean = false;
   fav: any;
 
+  isLoggedIn: boolean = false;
+
   ngOnInit() {
+    this.subLog = this.fbAuth.isLoggedIn$.subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn)
     this.sub = combineLatest(this.ps.getPosts(), this.route.params, this.ps.getAllFav()).subscribe(
       ([posts, params, favs]) => {
         this.post = posts.find((post: Post) => post.id == params['id']);

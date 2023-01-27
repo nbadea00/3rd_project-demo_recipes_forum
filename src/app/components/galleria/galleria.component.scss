@@ -8,8 +8,7 @@ h1 {
   color: red;
 }
 p{
-  margin: 0px;
-  padding: 10px;
+  margin: 0 0 20px 0;
 }
 
 div {
@@ -50,4 +49,9 @@ div {
       transform: rotate(-55deg);
     }
   }
+}
+
+#card{
+  display: flex;
+  justify-content: center;
 }

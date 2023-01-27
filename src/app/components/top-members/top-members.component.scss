@@ -1,14 +1,19 @@
 #member-container{
   overflow-y: scroll;
   height: 100%;
-  background-image: url('../../../assets/img/bgTopMember.jpg');
+  background-image: url('../../../assets/img/b.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 25px ;
+  padding: 50px;
 }
 #member-container::-webkit-scrollbar{
   display: none;
+}
+
+.font-size{
+  font-size: 24px;
 }
 img{
   width: 80px;
@@ -30,7 +35,7 @@ img{
   border-radius: 15px;
   box-shadow: 3px 3px black;
   padding: 10px;
-  background: linear-gradient(95deg, rgba(221,216,216,0.8) 45%, rgba(8,8,8,0.8) 100%);
+  background: linear-gradient(95deg, rgba(221,216,216,0.8) 70%, rgba(8,8,8,0.8) 100%);
   &:hover{
     transform: scale(1.05);
   }
@@ -66,7 +71,7 @@ img{
 }
 @media only screen and (max-width:424px) {
  #stelle{
-  display: none;
+  color: blue;
  }
  #stelle-user{
   display: unset;
