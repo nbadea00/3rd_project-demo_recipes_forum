@@ -40,13 +40,13 @@ import { FirebaseAuthService } from '../../firebase-auth.service';
   styles: [
     `
     .cont{
-      height: 100%;
+      min-height: 78vh;
       display: flex;
       justify-content: center;
       align-items: center;
     }
       .login-form {
-        max-width: 300px;
+        max-width: 400px;
       }
 
       .login-form-margin {

@@ -130,7 +130,7 @@ import { FirebaseDbService } from 'src/app/service/firebase-db.service';
   styles: [
     `
       .cont {
-        height: 100%;
+        min-height: 78vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -139,7 +139,10 @@ import { FirebaseDbService } from 'src/app/service/firebase-db.service';
         }
       }
       [nz-form] {
-        max-width: 600px;
+        min-width: 500px;
+        @media only screen and (max-width:575px) {
+          min-width: unset;
+        }
       }
 
       button {
