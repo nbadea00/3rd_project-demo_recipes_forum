@@ -9,6 +9,7 @@ import { NzDemoFormNormalLoginComponent } from './components/auth/login/login/lo
 import { NzDemoFormValidateReactiveComponent } from './components/auth/signup/signup/signup.component';
 import { NzDemoCarouselBasicComponent } from './components/zorro/carousel';
 import { AuthGuard } from './components/auth/auth.guard';
+import { GalleriaComponent } from './components/galleria/galleria.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
   },{
     path: 'signup',
     component: NzDemoFormValidateReactiveComponent
+  },{
+    path: 'gallery',
+    component: GalleriaComponent
   }
 ];
 

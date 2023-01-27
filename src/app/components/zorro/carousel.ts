@@ -3,40 +3,45 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'nz-demo-carousel-basic',
   template: `
-    <div nz-row class="cont">
+    <div nz-row [nzJustify]="'center'">
       <nz-carousel
         [nzAutoPlay]="true"
-        [nzEffect]="effect"
         nz-col
-        nzSpan="16"
-        [nzAutoPlaySpeed]="3000"
+        nzXs="24"
+        nzSm="22"
+        nzMd="20"
+        nzLg="18"
+        nzXl="18"
       >
-        <div nz-carousel-content *ngFor="let item of arrayOfImgUrls" >
-        <img [src]="item" />
+        <div
+          style="display:inline-block;width:100%;"
+          nz-carousel-content
+          *ngFor="let item of arrayOfImgUrls"
+        >
+          <img [src]="item" />
         </div>
       </nz-carousel>
     </div>
   `,
   styles: [
     `
-    .cont{
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      align-items: center;
-    }
-      [nz-carousel-content] {
-        text-align: center;
-      }
+
       nz-carousel {
-        height: 100%;
-        border-radius: 15px;
         box-shadow: 3px 3px 15px black;
+        border-radius: 20px;
+        aspect-ratio: 16/9;
       }
       img {
-        height: 100%;
         object-fit: fill;
         margin: 0 auto;
+        width:100%;
+        aspect-ratio: 16/9;
+      }
+
+      @media screen and (min-width: 425px) {
+        img {
+          width:100%;
+        }
       }
     `,
   ],

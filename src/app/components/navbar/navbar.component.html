@@ -17,7 +17,7 @@
           <span nz-icon nzType="container" nzTheme="outline"></span>
          <span class="scritta">Ricette</span>
         </li>
-        <li [routerLink]="['/prova1']" routerLinkActive="active">
+        <li [routerLink]="['/gallery']" routerLinkActive="active">
           <span nz-icon nzType="picture" nzTheme="outline"></span>
          <span class="scritta">Gallery</span>
         </li>
@@ -25,7 +25,7 @@
           <span nz-icon nzType="crown" nzTheme="outline"></span>
          <span class="scritta">Top Members</span>
         </li>
-        <li id="utente"><span nz-icon nzType="user" nzTheme="outline"></span></li>
+        <li [routerLink]="['/login']" id="utente" routerLinkActive="active"><span nz-icon nzType="user" nzTheme="outline"></span></li>
       </ul>
     </div>
     <div nz-col [nzLg]="{span:5}" [nzMd]="{span:6}" [nzSm]="{span:0}"  id="login">

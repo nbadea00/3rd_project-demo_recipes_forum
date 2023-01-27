@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
 import { FirebaseAuthService } from '../../firebase-auth.service';
 import { FirebaseDbService } from 'src/app/service/firebase-db.service';
@@ -7,77 +13,140 @@ import { FirebaseDbService } from 'src/app/service/firebase-db.service';
 @Component({
   selector: 'nz-demo-form-validate-reactive',
   template: `
-  <div class="cont">
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
-          <input nz-input formControlName="userName" placeholder="async validate try to write JasonWood" />
-          <ng-template #userErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">Please input your username!</ng-container>
-            <ng-container *ngIf="control.hasError('duplicated')">The username is redundant!</ng-container>
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="emailErrorTpl">
-          <input nz-input formControlName="email" placeholder="email" type="email" />
-          <ng-template #emailErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
-            <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please input your password!">
-          <input nz-input type="password" formControlName="password" (ngModelChange)="validateConfirmPassword()" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Confirm Password</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
-          <input nz-input type="password" formControlName="confirm" placeholder="confirm your password" />
-          <ng-template #passwordErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
-            <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container>
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="7">imgUrl</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please write something here!">
-            <input nz-input formControlName="imgUrl" placeholder="Url"/>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control [nzOffset]="7" [nzSpan]="12">
-          <button nz-button  nzType="primary" [disabled]="!validateForm.valid || a">Submit</button>
-          <button nz-button  (click)="resetForm($event)">Reset</button>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
+    <div class="cont">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
+          <nz-form-control
+            [nzSpan]="12"
+            nzHasFeedback
+            nzValidatingTip="Validating..."
+            [nzErrorTip]="userErrorTpl"
+          >
+            <input
+              nz-input
+              formControlName="userName"
+              placeholder="async validate try to write JasonWood"
+            />
+            <ng-template #userErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')"
+                >Please input your username!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('duplicated')"
+                >The username is redundant!</ng-container
+              >
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+          <nz-form-control
+            [nzSpan]="12"
+            nzHasFeedback
+            [nzErrorTip]="emailErrorTpl"
+          >
+            <input
+              nz-input
+              formControlName="email"
+              placeholder="email"
+              type="email"
+            />
+            <ng-template #emailErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('email')"
+                >The input is not valid E-mail!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('required')"
+                >Please input your E-mail!</ng-container
+              >
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+          <nz-form-control
+            [nzSpan]="12"
+            nzHasFeedback
+            nzErrorTip="Please input your password!"
+          >
+            <input
+              nz-input
+              type="password"
+              formControlName="password"
+              (ngModelChange)="validateConfirmPassword()"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired
+            >Confirm Password</nz-form-label
+          >
+          <nz-form-control
+            [nzSpan]="12"
+            nzHasFeedback
+            [nzErrorTip]="passwordErrorTpl"
+          >
+            <input
+              nz-input
+              type="password"
+              formControlName="confirm"
+              placeholder="confirm your password"
+            />
+            <ng-template #passwordErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')"
+                >Please confirm your password!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('confirm')"
+                >Password is inconsistent!</ng-container
+              >
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7">imgUrl</nz-form-label>
+          <nz-form-control
+            [nzSpan]="12"
+            nzHasFeedback
+            nzErrorTip="Please write something here!"
+          >
+            <input nz-input formControlName="imgUrl" placeholder="Url" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row [nzJustify]="'center'">
+          <div nz-col>
+            <button
+              nz-button
+              nzType="primary"
+              [disabled]="!validateForm.valid || a"
+            >
+              Submit
+            </button>
+            <button nz-button (click)="resetForm($event)">Reset</button>
+          </div>
+        </nz-form-item>
+      </form>
     </div>
   `,
 
-styles: [
+  styles: [
     `
-    .cont{
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      .cont {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div{
+          justify-content:center;
+        }
+      }
       [nz-form] {
-        width: 600px;
+        max-width: 600px;
       }
 
       button {
         margin-left: 8px;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class NzDemoFormValidateReactiveComponent {
   validateForm: UntypedFormGroup;
@@ -86,14 +155,22 @@ export class NzDemoFormValidateReactiveComponent {
 
   submitForm(): void {
     this.a = true;
-    console.log('submit', this.validateForm.value);
     let data = {
-      'email': this.validateForm.value.email,
-      'password': this.validateForm.value.password,
-      'name': this.validateForm.value.userName,
-      'imgUrl': this.validateForm.value.imgUrl
-    }
-    this.fbA.signUp(data.email, data.password).then((user:any) => this.fbDb.post(user.uid, data.name, data.email, data.imgUrl)).then(()=> this.fbA.logIn({'email': data.email,'password': data.password}));
+      email: this.validateForm.value.email,
+      password: this.validateForm.value.password,
+      name: this.validateForm.value.userName,
+      imgUrl: this.validateForm.value.imgUrl,
+    };
+    this.fbA
+      .signUp(data.email, data.password, data.name, data.imgUrl)
+      .then((user: any) =>{
+        console.log(user);
+        this.fbDb.post(user.uid, data.name, data.email, data.imgUrl)
+      }
+      )
+      .then(() =>
+        this.fbA.logIn({ email: data.email, password: data.password })
+      );
   }
 
   resetForm(e: MouseEvent): void {
@@ -108,7 +185,9 @@ export class NzDemoFormValidateReactiveComponent {
   }
 
   validateConfirmPassword(): void {
-    setTimeout(() => this.validateForm.controls['confirm'].updateValueAndValidity());
+    setTimeout(() =>
+      this.validateForm.controls['confirm'].updateValueAndValidity()
+    );
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -125,7 +204,9 @@ export class NzDemoFormValidateReactiveComponent {
       }, 1000);
     });
 
-  confirmValidator = (control: UntypedFormControl): { [s: string]: boolean } => {
+  confirmValidator = (
+    control: UntypedFormControl
+  ): { [s: string]: boolean } => {
     if (!control.value) {
       return { error: true, required: true };
     } else if (control.value !== this.validateForm.controls['password'].value) {
@@ -134,13 +215,17 @@ export class NzDemoFormValidateReactiveComponent {
     return {};
   };
 
-  constructor(private fb: UntypedFormBuilder, private fbA: FirebaseAuthService, private fbDb: FirebaseDbService) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private fbA: FirebaseAuthService,
+    private fbDb: FirebaseDbService
+  ) {
     this.validateForm = this.fb.group({
       userName: ['', [Validators.required], [this.userNameAsyncValidator]],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm: ['', [this.confirmValidator]],
-      imgUrl: ['']
+      imgUrl: [''],
     });
   }
 }

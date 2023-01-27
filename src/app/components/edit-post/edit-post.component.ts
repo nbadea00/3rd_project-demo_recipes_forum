@@ -53,7 +53,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
     console.log(this.form.value.formPost.title);
 
     let data = {
-      userId: 1,
+      userId: '',
       title: this.form.value.formPost.title,
       ingredients: this.form.value.formPost.ingredients,
       method: this.form.value.formPost.method,

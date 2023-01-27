@@ -4,11 +4,16 @@ import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Post{
-  userId:number,
+  userId:string,
   title:string,
   description:string,
   ingredients:string,
   method:string,
+}
+
+export interface Fav{
+  userId:string,
+  postId:string,
 }
 
 @Injectable({
@@ -34,6 +39,19 @@ export class PostsService {
   putPost(id:number, data:Post){
     let idString = id.toString()
     return this.http.put(`${environment.URL}/posts/${idString}`,data).pipe(catchError(this.errors))
+  }
+
+  fav(data:Fav){
+    console.log(data);
+    return this.http.post(`${environment.URL}/fav`, data).pipe(catchError(this.errors))
+  }
+
+  getAllFav(){
+    return this.http.get<any>(`${environment.URL}/fav`).pipe(catchError(this.errors))
+  }
+
+  delFav(id:string){
+    return this.http.delete(`${environment.URL}/fav/${id}`).pipe(catchError(this.errors))
   }
 
 

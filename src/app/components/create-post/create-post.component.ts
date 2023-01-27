@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FirebaseDbService } from 'src/app/service/firebase-db.service';
 import { PostsService } from 'src/app/service/posts.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class CreatePostComponent implements OnInit {
 
   postInterface = {
     userId:'',
+    userName:'',
     title:'',
     description:'',
     ingredients:'',
@@ -28,14 +30,20 @@ export class CreatePostComponent implements OnInit {
   @ViewChild('form',{static: true}) form!: NgForm;
 
   constructor(private ps: PostsService,private router: Router) { }
-
+  userId: string = '';
+  userName:string = '';
   ngOnInit(): void {
+    const userJson = localStorage.getItem('user');
+    if(!userJson) return;
+    const user = JSON.parse(userJson);
+    this.userId = user.uid;
+    this.userName = user.displayName;
   }
 
   img = false;
 
   imgToggle(){
-    this.img = !this.img
+    this.img = !this.img;
   }
 
   submit(){
@@ -43,14 +51,13 @@ export class CreatePostComponent implements OnInit {
     this.print = true;
     console.log(this.form.value.formPost.title)
     let data = {
-      'userId': 1,
+      'userId': this.userId,
       'title': this.form.value.formPost.title,
       'ingredients': this.form.value.formPost.ingredients,
       'method': this.form.value.formPost.method,
       'description': this.form.value.formPost.description,
       'imgUrl': this.form.value.formPost.imgUrl,
-      'rate': 0,
-      'vote': 0,
+      'userName': this.userName,
     }
 
     this.ps.postPost(data).subscribe(data => console.log(data));

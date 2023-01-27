@@ -27,19 +27,60 @@ export class DettagliCardComponent implements OnInit {
   ) {}
 
   a = 'url("")';
-  disabled: boolean = false;
 
   post!: Post;
   sub: Subscription = new Subscription();
   post$ = new Subject<Post | null>();
 
+
+  cont: number = 0;
+
+  uid:string = '';
+  seiTu: boolean = false;
+  fav: any;
+
   ngOnInit() {
-    this.sub = combineLatest(this.ps.getPosts(), this.route.params).subscribe(
-      ([posts, params]) => {
+    this.sub = combineLatest(this.ps.getPosts(), this.route.params, this.ps.getAllFav()).subscribe(
+      ([posts, params, favs]) => {
         this.post = posts.find((post: Post) => post.id == params['id']);
         this.a = `url("${this.post.imgUrl}")`;
+
+        console.log(favs);
+
+        this.cont = favs.filter((fav:any) => fav.postId == params['id']).length;
+
+        const userJson = localStorage.getItem('user');
+        if(!userJson) return;
+        const user = JSON.parse(userJson);
+        if( this.post.userId === user.uid) this.seiTu = true;
+        this.uid = user.uid;
+
+        this.fav = favs.find((fav:any) => (fav.postId == params['id'] && fav.userId == this.uid));
+
+        console.log(this.fav);
+
+        (this.fav)? this.fillOutline = 'fill' : this.fillOutline = 'outline' ;
+
+
+        console.log(this.seiTu);
       }
     );
+  }
+
+  fillOutline: 'fill' | 'outline' = 'outline';
+
+  toggle(){
+    if(this.fillOutline == 'outline'){
+      this.ps.fav({'userId': this.uid, 'postId': String(this.post.id)}).subscribe(()=>{
+        this.cont++;
+        this.fillOutline = 'fill';
+      })
+    }else{
+      this.ps.delFav(this.fav.id).subscribe(()=>{
+        this.cont--;
+        this.fillOutline = 'outline';
+      });
+    }
   }
 
   ngOnDestroy() {

@@ -24,11 +24,10 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 //Module
 import { AuthModule } from './components/auth/auth/auth.module';
-
 
 //Component
 import { CreatePostComponent } from './components/create-post/create-post.component';
@@ -39,8 +38,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NzDemoRateBasicComponent } from './components/zorro/rate.component';
 import { NzDemoButtonSizeComponent } from './components/zorro/button.component';
 import { TopMembersComponent } from './components/top-members/top-members.component';
-import {NzDemoLayoutTopComponent } from './components/zorro/layout.component';
+import { NzDemoLayoutTopComponent } from './components/zorro/layout.component';
 import { NzDemoCarouselBasicComponent } from './components/zorro/carousel';
+import { GalleriaComponent } from './components/galleria/galleria.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -55,7 +55,8 @@ registerLocaleData(en);
     NzDemoRateBasicComponent,
     NzDemoButtonSizeComponent,
     TopMembersComponent,
-    NzDemoCarouselBasicComponent
+    NzDemoCarouselBasicComponent,
+    GalleriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +76,8 @@ registerLocaleData(en);
     AuthModule,
     NzLayoutModule,
     NzBreadCrumbModule,
-    NzCarouselModule
+    NzCarouselModule,
+    NzAvatarModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

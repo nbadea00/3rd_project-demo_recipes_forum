@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap%27");
+
+h1 {
+  font-family: "Satisfy";
+  font-weight: bold;
+  text-align: center;
+  font-size: 90px;
+  color: red;
+}
+p{
+  margin: 0px;
+  padding: 10px;
+}
+
+div {
+  font-family: "Satisfy";
+  font-size: 20px;
+  height: 100%;
+
+  img {
+    height: 220px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+
+  nz-card {
+    background-color: antiquewhite;
+    border-radius: 30px;
+    font-family: "Satisfy";
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 5px 10px 18px rgb(204, 190, 171);
+
+    &:hover {
+      animation: spin 5s linear;
+      width: 70px;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+    nz-card {
+      transform: rotate(20deg);
+    }
+    nz-card {
+      transform: rotate(-55deg);
+    }
+  }
+}

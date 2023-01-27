@@ -33,7 +33,7 @@ import { FirebaseAuthService } from '../../firebase-auth.service';
       </div>
       <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
       Or
-      <a [routerLink]="['/routePath']" routerLinkActive="router-link-active" >register now!</a>
+      <a [routerLink]="['/signup']" routerLinkActive="router-link-active" >register now!</a>
     </form>
   </div>
   `,

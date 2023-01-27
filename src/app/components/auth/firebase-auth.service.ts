@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, of } from 'rxjs';
@@ -30,13 +31,21 @@ export class FirebaseAuthService {
   isLoggedIn$ = this.user$.pipe(map((user) => !!user));
   autoLogoutTimer: any;
 
-  signUp(email: string, password: string) {
+  signUp(
+    email: string,
+    password: string,
+    displayName: string,
+    photoURL: string
+  ) {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-
-        this.authSubject.next(user);
-        return user;
+        return updateProfile(user, {
+            displayName:displayName, photoURL: photoURL
+        }).then(()=> {
+          this.logIn({'email': email, 'password': password});
+          return user;
+        })
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -49,6 +58,7 @@ export class FirebaseAuthService {
     signInWithEmailAndPassword(this.auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
         localStorage.setItem(
           'user',
           JSON.stringify({
