@@ -1,4 +1,4 @@
-#3rd_project-demo_recipes_forum
+# 3rd_project-demo_recipes_forum
 
 Tecnologie: HTML, SCSS, Ng Zorro, TYPESCRIPT, ANGULAR, FIREBASE<br>
 Lavoro svolto in gruppo come consegna Build Week Episode.<br>
